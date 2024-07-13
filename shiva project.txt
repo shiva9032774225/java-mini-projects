@@ -1,0 +1,93 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.Scanner;
+class HelloWorld {
+    public static void main(String[] args) {
+       Scanner obj=new Scanner(System.in);
+       System.out.println("WELCOME TO PIZZA PART");
+       System.out.println("WHICH SIZE OF PIZZA YOU WANT(SMALL/MEDIUM/LARGE)");
+       String size=obj.next();
+       	 int amt=0;
+
+		if(size.equalsIgnoreCase("small")){
+			amt=100;
+			System.out.println("your pizza amount is"+amt);
+		}
+		else if(size.equalsIgnoreCase("medium")) {
+			   amt=150;
+			   	System.out.println("your pizza amount is"+amt);
+	 }
+		else if(size.equalsIgnoreCase("large")) {
+			   amt=200;
+			   	System.out.println("your pizza amount is"+amt);
+	  }
+		else {
+			System.out.println("You have entered Invalid Size...!");
+		}
+		//System.out.println("The total bill amount is:"+amt);
+		System.out.println("Do you want extra pepperon?");
+		int pep=20;
+		String choice=obj.next();
+if(choice.equals("yes")) {
+			amt=amt+pep;
+			System.out.println("your extra amount is amount is:"+pep);
+			System.out.println("The total bill amount is:"+amt);
+		}
+		else if(choice.equals("no")){
+			amt=amt+0;
+		}
+		else {
+			System.out.println("You have entered invalid option..!");
+		}
+		
+	//	System.out.println("The total bill amount is:"+amt);
+	System.out.println("do you want extra cheese:--?");
+	    int s=20;
+		int m=30;
+		int l=50;
+		String opt=obj.next();
+		switch(opt) {
+		case "yes":
+			if(size.equalsIgnoreCase("small")) {
+				amt=amt+s;
+				System.out.println("The total bill amount is:"+amt);
+
+			}	
+			else if(size.equalsIgnoreCase("medium")) {
+				amt=amt+m;
+				System.out.println("The total bill amount is:"+amt);
+
+			}
+			else if(size.equalsIgnoreCase("large")) {
+				amt=amt+l;
+				System.out.println("The total bill amount is:"+amt);
+
+			}
+			break;
+		case "no":
+			amt=amt+0;
+			break;
+		default:
+			System.out.println("You have entered invalid option..!");
+		
+	}
+	System.out.println("do you want next order:---?");
+	String next=obj.next();
+	switch(next){
+	    case "yes":
+	              if(next.equals("yes")){
+	    System.out.println("SAME BILL:....?");
+	    System.out.println("DIFFERENT BILL:.......?");
+	 }
+          break;
+case "no":
+    System.out.println("THANKYOU SIR/MAM");
+	}
+	
+	
+
+
+
+    }
+}
+    
