@@ -1,0 +1,75 @@
+
+
+import java.util.Scanner;
+public class A {
+	public static void main(String[] args) {
+			Scanner obj=new Scanner(System.in);
+			int result=0;
+			boolean a=true;
+			
+			System.out.println("enter the first number");
+			int num1=obj.nextInt();
+			while (a) {
+			System.out.println("enter 1 for add,2 for sub,3 for mult,4 for div,5 for perc");
+			int choice=obj.nextInt();
+			System.out.println("enter the second number");
+			int num2=obj.nextInt();
+			if(choice==1) {
+				result=num1+num2;
+				System.out.println("the result is:"+result);
+				}
+			else if(choice==2) {
+				result=num1-num2;
+				System.out.println("the result is:"+result);
+				}
+
+			else if(choice==3) {
+				result=num1*num2;
+				System.out.println("the result is:"+result);
+				}
+
+			else if(choice==4) {
+				result=num1/num2;
+				System.out.println("the result is:"+result);
+				}
+
+			else if(choice==5) {
+				result=num1%num2;
+				System.out.println("the result is:"+result);
+				}
+			
+			System.out.println("do you want continue this proces say [yes/no]");
+			String con=obj.next();
+			if(con.equals("yes")) {
+				System.out.println("you want to same value then enter(1)");
+				System.out.println("you wNT DIFFERENT VALUE THEN ENTER (0)");
+				int s=obj.nextInt();
+				if(s==1) {
+					
+					num1=result;
+					a=true;
+				}
+				else if(s==0) {
+					System.out.println("enter one number");
+					int num3=obj.nextInt();
+					num1=num3;
+					result=result-result;
+					a=true;
+				}
+				
+				
+			}
+			else if(con.equals("no")) {
+				a=false;
+				System.out.println("thankyou");
+			}
+
+
+		}
+
+	}
+}
+
+	
+
+
