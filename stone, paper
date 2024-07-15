@@ -50,8 +50,4 @@ public class paper_stone {
 				a=false;
 				System.out.println("THANKYOU");
 			}
-			
-			
-		}
-
-	}}
+				}}}
