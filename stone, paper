@@ -1,0 +1,57 @@
+package homework;
+import java.util.Scanner;
+import java.util.Random;
+
+public class paper_stone {
+
+	public static void main(String[] args) {
+		
+		Scanner obj=new Scanner(System.in);
+		Random ran=new Random();
+		boolean a=true;
+		while(a) {
+			System.out.println("welcome to stone paper scisser game");
+			System.out.println("enter (0)for stone,(1) for paper,(2) for scisser");
+			int user=obj.nextInt();
+			int com=ran.nextInt(3);
+			if(com==0) {
+				System.out.println("computer choice is stone");
+			}
+			else if(com==1) {
+				System.out.println("computer choice is paper");
+			}
+			else if(com==2) {
+				System.out.println("computer choice is scisser");
+			}
+			
+			if(com==user) {
+			System.out.println("its draw");
+				
+			}
+			else if((com==2)&&(user==0)) {
+				System.out.println("you win the game");
+			}
+			else if((com==0)&&(user==2)) {
+				System.out.println("computer win the game");
+			}
+			else if(user>com) {
+				System.out.println("user wins the game");
+			}
+			else if(com>user) {
+				System.out.println("computer wins the game");
+			}
+			System.out.println("do you want continue the game");
+			System.out.println("enter (1) for yes,enter (2) for No");
+			int g=obj.nextInt();
+			if(g==1) {
+				a=true;
+			}
+			else if(g==0) {
+				a=false;
+				System.out.println("THANKYOU");
+			}
+			
+			
+		}
+
+	}}
