@@ -1,0 +1,82 @@
+package homework;
+import java.util.Scanner;
+
+public class pizza_bill {
+
+	public static void main(String[] args) {
+	Scanner obj=new Scanner(System.in);
+	int bill=0;
+	boolean a=true;
+	while(a) {
+	System.out.println("welcome to pizza hut......!");
+	System.out.println("which size pizza do you want");
+	System.out.println("small-100,medium-150,large-200");
+	String size=obj.next();
+	size.toLowerCase();
+	String b=size.substring(0,size.length());
+	if(b.equals("small")) {
+		bill=bill+100;
+		System.out.println("the total amount is:"+bill);
+	}
+	if(b.equals("medium")) {
+		bill=bill+150;
+		System.out.println("the total amount is:"+bill);
+	}
+	if(b.equals("large")) {
+		bill=bill+200;
+		System.out.println("the total amount is:"+bill);
+	}
+	System.out.println("do you want extra cheese..?");
+	System.out.println("small-20,medium-30,large-50");
+	System.out.println("you wanr then enter (1) fot yes,(2) for No");
+	int cheese=obj.nextInt();
+	if(cheese==1) {
+		if(b.equals("small")) {
+			bill=bill+20;
+		}
+		else if(b.equals("medium")) {
+			bill=bill+30;
+		}
+		else if(b.equals("large")) {
+			bill=bill+50;
+		}
+		System.out.println("the total amount is:"+bill);
+	}
+	else if(cheese==2) {
+		System.out.println("the total amount is:"+bill);
+	}
+	System.out.println("do you want extra pepperoni");
+	System.out.println("small-20,medium-20,large-20");
+	System.out.println("you wanr then enter (1) fot yes,(2) for No");
+	int pep=obj.nextInt();
+if(pep==1) {
+	bill=bill+20;
+	System.out.println("the total amount is:"+bill);
+}
+else if(pep==2) {
+	System.out.println("the total amount is:"+bill);
+}
+System.out.println("do youu want next order");
+System.out.println("you want then enter (1) fot yes,(2) for No");
+int order=obj.nextInt();
+if(order==2) {
+	a=false;
+	System.out.println("thankyou for visiting");
+}
+else if(order==1) {
+	System.out.println("same bill continue enter then (1)");
+	System.out.println("different bill continue enter then (2)");
+	int c=obj.nextInt();
+	if(c==1) {
+		System.out.println("we are continue with same bill");
+		bill=bill;
+	}
+	else if(c==2) {
+		bill=bill-bill;
+	}
+	
+}
+	}
+
+}
+}
