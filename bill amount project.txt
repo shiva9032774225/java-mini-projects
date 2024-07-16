@@ -1,0 +1,35 @@
+package homework;
+import java.util.Scanner;
+
+public class expressions {
+
+	public static void main(String[] args) {
+		Scanner obj=new Scanner(System.in);
+		System.out.println("enter your amount:......?");
+		int bill=obj.nextInt();
+		int discount=0;
+		if((bill>0)&&(bill<=1000)) {
+			discount=discount+2;
+		}
+		else if((bill>1000)&&(bill<=2000)) {
+			discount=discount+4;
+		}
+		else if((bill>200)&&(bill<=4000)) {
+			discount=discount+6;
+		}
+		else if((bill>4000)&&(bill<=6000)) {
+			discount=discount+8;
+		}
+		else if((bill>6000)&&(bill<=1000)) {
+			discount=discount+10;
+		}
+	int da=(bill*discount)/100;
+	int finalbill=bill-da;
+	System.out.println("your bill amount is:"+bill);
+	System.out.println("your discount percentage is:"+discount+"%");
+	System.out.println("your discount amount is:"+da);
+	System.out.println("your final payble bill amount is:"+finalbill);
+
+	}
+
+}
