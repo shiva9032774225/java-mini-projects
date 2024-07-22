@@ -1,0 +1,79 @@
+class A{
+    public String accnum;
+    public String acchold;
+    public double bal;
+    public void A(String accnum ,String acchold){
+        this.accnum=accnum;
+        this.acchold=acchold;
+        this.bal=0.0;
+         }
+    public String getaccnum(){
+        return accnum;
+    }  
+    public String getaccchold(){
+        return acchold;
+    }
+    public double getbal(){
+        System.out.println("balance:"+bal);
+        return bal;
+    }
+   public void deposit(double amt){
+        if(amt>0){
+            bal=bal+amt;
+            System.out.println("deposit amount:"+amt);
+        }
+        else{
+            System.out.println("invalid enter correctly:");
+        }}
+       public void  withdraw(double amt){
+            if(amt>0&&amt<=bal){
+                bal=bal-amt;
+                System.out.println("debited amount:"+amt);
+            }else{
+                System.out.println("invalid amount:");
+            }
+        }
+    }
+
+
+
+import java.util.*;
+class B{
+    public static void main (String []args){
+        Scanner obj= new Scanner(System.in);
+    System.out.println("enter the account number:");
+    String p= obj.nextLine();
+    System.out.println("enter the account holder name:");
+    String o=obj.nextLine();
+    A obj1= new A ();
+    while(true){
+        System.out.println("....BANK SYSTEM MENU....");
+        System.out.println("1.deposit");
+        System.out.println("2.withdraw");
+        System.out.println("3.balance");
+        System.out.println("4.exit");
+        int y=obj.nextInt();
+        switch(y){
+            case 1:
+            System.out.println("enter the amount:");
+            int u=obj.nextInt();
+            obj1.deposit(u); 
+            break;
+            case 2:
+            System.out.println("enter the amount:");
+            int m=obj.nextInt();    
+              obj1.withdraw(m);  
+              break;
+              case 3:
+            obj1.getbal();
+            break;
+            case 4:
+                System.out.println("......EXITING....");
+                return;
+        }
+    }
+    }
+}
+
+
+
