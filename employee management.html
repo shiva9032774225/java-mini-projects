@@ -1,0 +1,243 @@
+package jdbc;
+import java.sql.*;
+import java.util.Scanner;
+public class A3 {
+
+	public static void main(String[] args) throws SQLException, ClassNotFoundException, InterruptedException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		
+		
+	     String url="jdbc:mysql://localhost:3306/employee";
+	     String pass="root";
+	     String user="root";
+	     Connection c=DriverManager.getConnection(url,pass,user);
+	     Statement s=c.createStatement();
+	     Scanner sc=new Scanner(System.in);
+	     
+	  while(true) {
+		     System.out.println("EMPLOYEE MANAGEMENT SYSTEM----------------?");
+		     System.out.println("1EMPLOYEE RIGISTRATION");
+		     System.out.println("2.VIEW REGISTRATION");
+		     System.out.println("3.Get SALARY PERTICULAR PERSON");
+		     System.out.println("4.UPDATE SALARY ");
+		     System.out.println("5.CHECK SALARY STATUS");
+		     System.out.println("6.DELETE ");
+		     System.out.println("7.CHANGE SALARY STATUS");
+		     System.out.println("8.EXIT");
+		      System.out.println("PLEASE CHOOSE THE OPTION");
+		     int choise=sc.nextInt();
+		      if(choise<0||choise>8) {
+		    	 System.out.println("you have enterd invalid option please yenter valid option value");
+		    	int choise1=sc.nextInt();
+		    	choise=choise1;
+		     }
+
+		      switch(choise) {
+				 case 1:
+				    	 String q="insert into details (emp_id,emp_name,department,salary) values(?,?,?,?);";
+				         PreparedStatement p=c.prepareStatement(q);
+				 		boolean a=true;
+				 		while(a) {
+				 		c.setAutoCommit(false);
+				 		System.out.println(" ENTER EMPLOYEE ID: ");
+						int id=sc.nextInt();
+						sc.nextLine();
+						System.out.println("Enter EMPLOYEE NAME: ");
+						String name=sc.next();
+						System.out.println("ENTER DEPARTMENT NAME: ");
+						String rno=sc.next();
+						System.out.println("ENTER EMPLOYEE SALARY: ");
+						int mobile=sc.nextInt();
+					    p.setInt(1,id);
+						p.setString(2,name);
+						p.setString(3,rno);
+						p.setInt(4,mobile);
+					     p.executeUpdate();
+					System.out.println("Record Inserted Successfully");
+					
+						System.out.println("Do you want to Insert another Record [yes/no] ?");
+						String extra=sc.next();
+						if(extra.equalsIgnoreCase("yes")) {
+							a=true;
+						}
+						if(extra.equalsIgnoreCase("no")) {
+							a=false;
+							System.out.println(".....Thank You ^..^");
+						
+				 		}
+						c.commit();
+				 		}
+				 		break;
+				 		
+				 case 2:
+				 		Statement st=c.createStatement();
+				 		String q1="select * from details;";
+				 		ResultSet r=s.executeQuery(q1);
+				 		System.out.println("---------------+---------------+---------------+---------------+");
+				 		while(r.next()) {
+				 System.out.println(r.getInt(1)+"| "+r.getString(2)+" | "+r.getString(3)+" | "+r.getInt(4)+" | "+r.getString(5)+"|"+r.getString(6));
+				 System.out.println("---------------+---------------+---------------+---------------+");
+				 		}
+				 		
+				 		break;
+				 		
+				 case 3:
+				 		System.out.println("ENTER EMPLOYEE NAME:");
+				 		String name1=sc.next();
+				 		sc.nextLine();
+				 		System.out.println("ENTER EMPLOYEE ID:");
+				 		int reser_id=sc.nextInt();
+				 		sc.nextLine();
+				 		String h="select * from details where emp_name=? and emp_id=?";
+
+				 		//String q2="select reser_id  where holder_name=?;";
+				 		PreparedStatement p1=c.prepareStatement(h);
+				 		p1.setString(1, name1);
+				 		p1.setInt(2,reser_id );
+				 		ResultSet r1=p1.executeQuery();
+				 		while(r1.next()) {
+				 		System.out.println("salary is: "+r1.getInt("salary"));}
+				 		break;
+				 		
+				 		
+				 case 4:
+				     	boolean b=true;
+				     	while(b) {
+				 		System.out.println("WHICH DETAILS DO YOU WANT TO UPDATE ?");
+				 		System.out.println("1.EMPLOYEE NAME");
+				 		System.out.println("2.EMPLOYEE SALARY");
+				 		System.out.println("3.EMPLOYEE DEPARTMENT"); 
+				 		System.out.println("CHOOSE YOUR OPTION:");
+				 		int opt2=sc.nextInt();
+				 		if(opt2<0||opt2>3) {
+				 			System.out.println("INVALID..!! PLEASE SELECT VALID OPTION");
+				 			int opt3=sc.nextInt();
+				 			opt2=opt3;
+				 		}
+				 		System.out.println("ENTER EMPLOYEE  ID: ");
+				 		 int reg=sc.nextInt();
+				 		switch(opt2) {
+				 		case 1:
+				 			System.out.println("ENTER NEW EMPLOYEE NAME:");
+				 			String n=sc.next();
+				 			sc.nextLine();
+				 			String q3="update details set emp_name=? where emp_id=?;";
+				 			PreparedStatement p2=c.prepareStatement(q3);
+				 			p2.setString(1,n);
+				 			p2.setInt(2,reg);
+				 			p2.executeUpdate();
+				 			System.out.println("HOLDER UPDATED SUCCESSFULLY");
+				 			break;
+				 		case 2:
+				 			System.out.println("ENTER NEW SALARY VALUE:");
+				 			String roll=sc.next();
+				 			String q4="update details set salary =? where emp_id=?;";
+				 			PreparedStatement p3=c.prepareStatement(q4);
+				 			p3.setString(1,roll);
+				 			p3.setInt(2,reg);
+				 			p3.executeUpdate();
+				 			System.out.println("NEW SALARY DETAILS  IS UPDATED SUCCESSFULLY");
+				 			break;
+				 		case 3:
+				 			System.out.println("ENTER NEW DEPARTMENT NAME:");
+				 			String num=sc.next();
+				 			String q5="update details set department=? where emp_id=?;";
+				 			PreparedStatement p4=c.prepareStatement(q5);
+				 			p4.setString(1,num);
+				 			p4.setInt(2,reg);
+				 			p4.executeUpdate();
+				 			System.out.println("NEW DEPARTMENT NAME IS UPDATED SUCESSFULLY");
+				 			break;	
+				 		}
+				 		System.out.println("Do you want to update anything [yes/no] ?");
+				 		String choice1=sc.next();
+				 		if(choice1.equalsIgnoreCase("yes")) {
+				 			b=true;
+				 		}
+				 		if(choice1.equalsIgnoreCase("no")) {
+				 			b=false;
+				 			System.out.println(".....Thank You ^..^");
+				 			}
+				 		}
+				     	break;
+				 		
+				 		
+				 case 5://working
+						String d7="select checked from details where emp_id=?";
+						PreparedStatement p5=c.prepareStatement(d7);
+						System.out.println(" enter the employee ID");
+						int g=sc.nextInt();
+						p5.setInt(1,g);
+						ResultSet r3=p5.executeQuery();
+						while(r3.next()){
+							System.out.println("-------------------");
+							System.out.println("|"+r3.getString("checked")+"|");
+							System.out.println("-------------------");
+						  }
+						break;
+
+				case 6:
+				     	boolean d=true;
+				     	while(d) {
+				     	System.out.println("ENTER THE reserv id THAT YOU WANT TO DELETE: ");
+				     	int std=sc.nextInt();
+				     	sc.nextLine();
+				     	String q6="delete from details where emp_id=?;";
+				     	PreparedStatement p6=c.prepareStatement(q6);
+				     	p6.setInt(1, std);
+				     	p6.executeUpdate();
+				     	System.out.println("DELETED SUCCESSFULLY");
+				     	System.out.println("Do you want to delete another record [yes/no] ?");
+				 		String choice2=sc.next();
+				 		if(choice2.equalsIgnoreCase("yes")) {
+				 			d=true;
+				 		}
+				 		if(choice2.equalsIgnoreCase("no")) {
+				 			d=false;
+				 			System.out.println(".....Thank You ^..^");
+				 			}
+				 		}
+				     	break;
+				     	
+				case 7://working
+					String d9="update details set checked =?,timings=now() where emp_id=? and emp_name=?";
+					PreparedStatement s7=c.prepareStatement(d9);
+					System.out.println("enter the employee id");
+					int g2=sc.nextInt();
+					s7.setInt(2,g2);
+				    System.out.println("enter the employee name");
+				    String g3=sc.next();
+				    s7.setString(3,g3);
+				    System.out.println("enter the salary status");
+				    String g4=sc.next();
+				    s7.setString(1, g4);
+				    s7.executeUpdate();
+				    System.out.print("updated");
+				    int y1=5; 
+					while(y1!=0){			
+					   System.out.print(".");
+					Thread.sleep(200);
+					y1--;
+					}
+				    break;
+
+				     	
+				case 8: 
+				    	
+			    	 for(int h1=5;h1!=0;h1--) {
+			    		 System.out.print(".");
+			    		 Thread.sleep(123);
+			    		
+			    	 }
+			     	System.out.println("......EXITING ^._.^");
+			     	return;  
+		     
+				 		
+				 		
+		      }
+				 		
+		      }
+	}
+
+}
